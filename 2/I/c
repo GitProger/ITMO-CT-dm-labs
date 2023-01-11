@@ -1,0 +1,26 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Digest::MD5 qw(md5_hex);
+
+my $name = shift;
+if (!defined($name)) {
+    $name = "main.cpp";
+}
+my $exe = "o";
+
+my $md5 = md5_hex(`cat $name`);
+my $old_md5 = `cat __compiled`;
+chomp($old_md5);
+if ($md5 ne $old_md5) {
+#    system("g++ -Wall -o $exe -std=c++14 $name");
+    system("g++ -Wall -o $exe -std=c++2a $name");
+    if (!$?) { 
+        print "OK\n";
+    } #else {
+       # exit();
+#	}
+    system("echo $md5>__compiled");
+}
+
+system("./$exe") if (!$?);
