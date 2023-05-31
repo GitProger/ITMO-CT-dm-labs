@@ -1,4 +1,8 @@
-# doesn't work for some reason...
+# doesnt't work for some reason...
+import sys
+
+inp = sys.stdin
+outp = sys.stdout
 
 inp = open('automaton.in', 'r')
 outp = open('automaton.out', 'w')
@@ -20,7 +24,7 @@ def check(v, s):
 #    print('->', v, s)
     res = False
     for u in aut.get(v) or []:
-        if u.islower(): #term 
+        if len(u) == 1: #term 
             q = u == s
         else:
             if u[0] != s[0]:
@@ -37,4 +41,3 @@ for _ in range(m):
 inp.close()
 outp.close()
 
-# 
