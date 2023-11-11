@@ -1,5 +1,0 @@
-#!/usr/bin/env perl
-$n = uc(shift) . ".py";
-$err = shift;
-system "python3 '$n'" . (defined $err ? " 2>/dev/null" : "");
-
